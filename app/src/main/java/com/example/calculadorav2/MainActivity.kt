@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val rotacion = windowManager.defaultDisplay.rotation
         if (rotacion == Surface.ROTATION_0 || rotacion == Surface.ROTATION_180) {
         }else{
-            h.setEnabled(true)
+            h.setEnabled(false)
             d.setEnabled(false)
             b.setEnabled(true)
             isEnableDD(h)
