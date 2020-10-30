@@ -57,7 +57,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/bt7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -71,7 +71,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/bt8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -83,7 +83,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/bt9"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -124,7 +124,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/bt4"
                 android:layout_width="match_parent"
 
                 android:layout_height="match_parent"
@@ -137,7 +137,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/bt5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -148,7 +148,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/bt6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -186,7 +186,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/bt1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -197,7 +197,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/bt2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -208,7 +208,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/bt3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -246,7 +246,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/bt0"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

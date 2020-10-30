@@ -70,6 +70,23 @@ class MainActivity : AppCompatActivity() {
         isEnableDD(h)
         isEnableDD(d)
         isEnableDD(b)
+
+        var bt2 = findViewById<Button>(R.id.bt2)
+        var bt3 = findViewById<Button>(R.id.bt3)
+        var bt4 = findViewById<Button>(R.id.bt4)
+        var bt5 = findViewById<Button>(R.id.bt5)
+        var bt6 = findViewById<Button>(R.id.bt6)
+        var bt7 = findViewById<Button>(R.id.bt7)
+        var bt8 = findViewById<Button>(R.id.bt8)
+        var bt9 = findViewById<Button>(R.id.bt9)
+        trueButtons(bt2)
+        trueButtons(bt3)
+        trueButtons(bt4)
+        trueButtons(bt5)
+        trueButtons(bt6)
+        trueButtons(bt7)
+        trueButtons(bt8)
+        trueButtons(bt9)
     }
     fun Bin(v: View){
         var  h = findViewById<Button>(R.id.btHex)
@@ -81,7 +98,39 @@ class MainActivity : AppCompatActivity() {
         isEnableDD(h)
         isEnableDD(d)
         isEnableDD(b)
+
+        var bt2 = findViewById<Button>(R.id.bt2)
+        var bt3 = findViewById<Button>(R.id.bt3)
+        var bt4 = findViewById<Button>(R.id.bt4)
+        var bt5 = findViewById<Button>(R.id.bt5)
+        var bt6 = findViewById<Button>(R.id.bt6)
+        var bt7 = findViewById<Button>(R.id.bt7)
+        var bt8 = findViewById<Button>(R.id.bt8)
+        var bt9 = findViewById<Button>(R.id.bt9)
+        falseButtons(bt2)
+        falseButtons(bt3)
+        falseButtons(bt4)
+        falseButtons(bt5)
+        falseButtons(bt6)
+        falseButtons(bt7)
+        falseButtons(bt8)
+        falseButtons(bt9)
+     }
+
+    fun falseButtons(b:Button){
+        if(b.isEnabled==true){
+            b.isEnabled=false
+            b.setTextColor(Color.TRANSPARENT)
+        }
     }
+    fun trueButtons(b:Button){
+        if(b.isEnabled==false){
+            b.isEnabled=true
+            b.setTextColor(Color.parseColor("#FF00B0FF"))
+        }
+    }
+
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
