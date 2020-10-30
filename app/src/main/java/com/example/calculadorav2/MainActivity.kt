@@ -1,26 +1,19 @@
 package com.example.calculadorav2
 
-import android.content.ClipData
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.view.Surface
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.ActionMenuItem
-import androidx.appcompat.view.menu.MenuView
-import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     var num1: Double = 0.0
     var num2: Double = 0.0
     var operator: String = ""
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun isEnableDD(h :Button){
+    fun isEnableDD(h: Button){
         if(h.isEnabled()==false ){
             h.setTextColor(Color.BLUE)
         }else{
@@ -48,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hex(v: View){
+
+        textView.text = Integer.toHexString(textView.text.toString().toInt())
         var  h = findViewById<Button>(R.id.btHex)
         var  d = findViewById<Button>(R.id.btDec)
         var  b = findViewById<Button>(R.id.btBina)
@@ -59,7 +54,53 @@ class MainActivity : AppCompatActivity() {
         isEnableDD(b)
 
     }
+
+    fun convertBinaryToDecimal(num: Long): Int {
+        var num = num
+        var decimalNumber = 0
+        var i = 0
+        var remainder: Long
+
+        while (num.toInt() != 0) {
+            remainder = num % 10
+            num /= 10
+            decimalNumber += (remainder * Math.pow(2.0, i.toDouble())).toInt()
+            ++i
+        }
+        return decimalNumber
+    }
+
+    fun caracterHexadecimalADecimal(caracter: Char): Int {
+        return when (caracter) {
+            'a' -> 10
+            'b' -> 11
+            'c' -> 12
+            'd' -> 13
+            'e' -> 14
+            'f' -> 15
+            else -> caracter.toString().toInt()
+        }
+    }
+
+    fun hexadecimalADecimal(hexadecimal: String): Long {
+        var decimal: Long = 0
+        // Saber en cuál posición de la cadena (de izquierda a derecha) vamos
+        var potencia = 0
+        // Recorrer la cadena de derecha a izquierda
+        for (x in hexadecimal.length - 1 downTo 0) {
+            val valor: Int = caracterHexadecimalADecimal(hexadecimal[x])
+            val elevado = Math.pow(16.0, potencia.toDouble()).toLong() * valor
+            decimal += elevado
+            // Avanzar en la potencia
+            potencia++
+        }
+        return decimal
+    }
+//Falta chekear que la entrada sea binaria o decimal
     fun dec(v: View){
+        var f = textView.text.toString()
+        var c = textView.text.toString().toLong()
+        textView.text =  convertBinaryToDecimal(c).toString()
         var  h = findViewById<Button>(R.id.btHex)
         var  d = findViewById<Button>(R.id.btDec)
         var  b = findViewById<Button>(R.id.btBina)
@@ -89,6 +130,8 @@ class MainActivity : AppCompatActivity() {
         trueButtons(bt9)
     }
     fun Bin(v: View){
+
+        textView.text = Integer.toBinaryString(textView.text.toString().toInt())
         var  h = findViewById<Button>(R.id.btHex)
         var  d = findViewById<Button>(R.id.btDec)
         var  b = findViewById<Button>(R.id.btBina)
@@ -117,13 +160,13 @@ class MainActivity : AppCompatActivity() {
         falseButtons(bt9)
      }
 
-    fun falseButtons(b:Button){
+    fun falseButtons(b: Button){
         if(b.isEnabled==true){
             b.isEnabled=false
             b.setTextColor(Color.TRANSPARENT)
         }
     }
-    fun trueButtons(b:Button){
+    fun trueButtons(b: Button){
         if(b.isEnabled==false){
             b.isEnabled=true
             b.setTextColor(Color.parseColor("#FF00B0FF"))
