@@ -1,12 +1,14 @@
 package com.example.calculadorav2
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.Surface
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     var num1: Double = 0.0
     var num2: Double = 0.0
     var operator: String = ""
+    @RequiresApi(Build.VERSION_CODES.FROYO)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,9 +37,9 @@ class MainActivity : AppCompatActivity() {
 
     fun isEnableDD(h: Button){
         if(h.isEnabled()==false ){
-            h.setTextColor(Color.BLUE)
+            h.setTextColor(Color.parseColor("#FF1B2977"))
         }else{
-            h.setTextColor(Color.MAGENTA)
+            h.setTextColor(Color.BLUE)
         }
     }
 
@@ -322,5 +325,4 @@ class MainActivity : AppCompatActivity() {
         num1 = 0.0
         num2 = 0.0
     }
-
 }
