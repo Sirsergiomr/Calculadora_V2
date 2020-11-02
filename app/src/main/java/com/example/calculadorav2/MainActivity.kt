@@ -1,5 +1,6 @@
 package com.example.calculadorav2
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         var  d = findViewById<Button>(R.id.btDec)
         var  b = findViewById<Button>(R.id.btBina)
         val rotacion = windowManager.defaultDisplay.rotation
+
         if (rotacion == Surface.ROTATION_0 || rotacion == Surface.ROTATION_180) {
         }else{
             h.setEnabled(true)
@@ -52,7 +54,6 @@ class MainActivity : AppCompatActivity() {
             falseButtons(btf)
         }
     }
-
     fun isEnableDD(h: Button){
         if(h.isEnabled()==false ){
             h.setTextColor(Color.parseColor("#FF1B2977"))
@@ -60,7 +61,6 @@ class MainActivity : AppCompatActivity() {
             h.setTextColor(Color.BLUE)
         }
     }
-
     fun hex(v: View){
         var entrada = textView.getText().toString()
         if (entrada == "") {
@@ -135,21 +135,18 @@ class MainActivity : AppCompatActivity() {
 
     fun hexadecimalADecimal(hexadecimal: String): Long {
         var decimal: Long = 0
-        // Saber en cuál posición de la cadena (de izquierda a derecha) vamos
         var potencia = 0
-        // Recorrer la cadena de derecha a izquierda
         for (x in hexadecimal.length - 1 downTo 0) {
             val valor: Int = caracterHexadecimalADecimal(hexadecimal[x])
             val elevado = Math.pow(16.0, potencia.toDouble()).toLong() * valor
             decimal += elevado
-            // Avanzar en la potencia
             potencia++
         }
         return decimal
     }
-//Falta chekear que la entrada sea binaria o decimal
     fun dec(v: View){
-    var entrada = textView.getText().toString()
+
+        var entrada = textView.getText().toString()
         if (entrada == "") {
 
         }else{
@@ -191,7 +188,6 @@ class MainActivity : AppCompatActivity() {
         binbo = false
         decbo = true
         hexbo = false
-
     }
     fun Bin(v: View){
         var entrada = textView.getText().toString()
@@ -239,7 +235,7 @@ class MainActivity : AppCompatActivity() {
     fun falseButtons(b: Button){
         if(b.isEnabled==true){
             b.isEnabled=false
-            b.setTextColor(Color.TRANSPARENT)
+            b.setTextColor(Color.GRAY)
         }
     }
     fun trueButtons(b: Button){
@@ -349,11 +345,7 @@ class MainActivity : AppCompatActivity() {
         if (textView.getText().toString() == "") {
             Toast.makeText(applicationContext, "No has puesto nada", Toast.LENGTH_SHORT).show()
         } else if (textView.getText().toString() == "") {
-            Toast.makeText(
-                applicationContext,
-                "No se puede borrar si no hay nada",
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(applicationContext,"No se puede borrar si no hay nada",Toast.LENGTH_LONG).show()
         } else {
             borra()
         }
