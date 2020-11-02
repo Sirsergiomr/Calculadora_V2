@@ -16,10 +16,14 @@ class MainActivity : AppCompatActivity() {
     var num1: Double = 0.0
     var num2: Double = 0.0
     var operator: String = ""
+    var binbo : Boolean = false
+    var decbo : Boolean = true
+    var hexbo : Boolean = false
     @RequiresApi(Build.VERSION_CODES.FROYO)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         var  h = findViewById<Button>(R.id.btHex)
         var  d = findViewById<Button>(R.id.btDec)
         var  b = findViewById<Button>(R.id.btBina)
@@ -32,6 +36,20 @@ class MainActivity : AppCompatActivity() {
             isEnableDD(h)
             isEnableDD(d)
             isEnableDD(b)
+
+            var bta = findViewById<Button>(R.id.bta)
+            var btb = findViewById<Button>(R.id.btb)
+            var btc = findViewById<Button>(R.id.btc)
+            var btd = findViewById<Button>(R.id.btd)
+            var bte = findViewById<Button>(R.id.bte)
+            var btf = findViewById<Button>(R.id.btf)
+
+            falseButtons(bta)
+            falseButtons(btb)
+            falseButtons(btc)
+            falseButtons(btd)
+            falseButtons(bte)
+            falseButtons(btf)
         }
     }
 
@@ -44,18 +62,48 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hex(v: View){
+        var entrada = textView.getText().toString()
+        if (entrada == "") {
+        }else{
+            if(decbo == true){
+                textView.text = Integer.toHexString(textView.text.toString().toInt())
+            }
+            if(binbo == true){
+                var d = convertBinaryToDecimal(textView.text.toString().toLong())
+                textView.text = Integer.toHexString(d.toInt())
+            }
+        }
 
-        textView.text = Integer.toHexString(textView.text.toString().toInt())
         var  h = findViewById<Button>(R.id.btHex)
         var  d = findViewById<Button>(R.id.btDec)
         var  b = findViewById<Button>(R.id.btBina)
+
+        trueButtons(bt2)
+        trueButtons(bt3)
+        trueButtons(bt4)
+        trueButtons(bt5)
+        trueButtons(bt6)
+        trueButtons(bt7)
+        trueButtons(bt8)
+        trueButtons(bt9)
+
+        trueButtonsHex(bta)
+        trueButtonsHex(btb)
+        trueButtonsHex(btc)
+        trueButtonsHex(btd)
+        trueButtonsHex(bte)
+        trueButtonsHex(btf)
+
         d.setEnabled(true)
         h.setEnabled(false)
         b.setEnabled(true)
-        isEnableDD(h)
-        isEnableDD(d)
-        isEnableDD(b)
+        isEnableDD(btHex)
+        isEnableDD(btDec)
+        isEnableDD(btBina)
 
+        binbo = false
+        decbo = false
+        hexbo = true
     }
 
     fun convertBinaryToDecimal(num: Long): Int {
@@ -101,9 +149,19 @@ class MainActivity : AppCompatActivity() {
     }
 //Falta chekear que la entrada sea binaria o decimal
     fun dec(v: View){
-        var f = textView.text.toString()
-        var c = textView.text.toString().toLong()
-        textView.text =  convertBinaryToDecimal(c).toString()
+    var entrada = textView.getText().toString()
+        if (entrada == "") {
+
+        }else{
+            if (hexbo == true){
+                textView.text =hexadecimalADecimal(textView.text.toString()).toString()
+            }
+            if(binbo == true){
+                var c = textView.text.toString().toLong()
+                textView.text = convertBinaryToDecimal(c).toString()
+            }
+        }
+
         var  h = findViewById<Button>(R.id.btHex)
         var  d = findViewById<Button>(R.id.btDec)
         var  b = findViewById<Button>(R.id.btBina)
@@ -115,14 +173,13 @@ class MainActivity : AppCompatActivity() {
         isEnableDD(d)
         isEnableDD(b)
 
-        var bt2 = findViewById<Button>(R.id.bt2)
-        var bt3 = findViewById<Button>(R.id.bt3)
-        var bt4 = findViewById<Button>(R.id.bt4)
-        var bt5 = findViewById<Button>(R.id.bt5)
-        var bt6 = findViewById<Button>(R.id.bt6)
-        var bt7 = findViewById<Button>(R.id.bt7)
-        var bt8 = findViewById<Button>(R.id.bt8)
-        var bt9 = findViewById<Button>(R.id.bt9)
+        falseButtons(bta)
+        falseButtons(btb)
+        falseButtons(btc)
+        falseButtons(btd)
+        falseButtons(bte)
+        falseButtons(btf)
+
         trueButtons(bt2)
         trueButtons(bt3)
         trueButtons(bt4)
@@ -131,13 +188,27 @@ class MainActivity : AppCompatActivity() {
         trueButtons(bt7)
         trueButtons(bt8)
         trueButtons(bt9)
+        binbo = false
+        decbo = true
+        hexbo = false
+
     }
     fun Bin(v: View){
+        var entrada = textView.getText().toString()
+        if (entrada == "") {
+        }else{
+            if (decbo == true){
+                textView.text = Integer.toBinaryString(textView.text.toString().toInt()).toString()
+            }
+            if(hexbo == true){
+                var c = hexadecimalADecimal(textView.text.toString()).toInt()
+                textView.text = Integer.toBinaryString(c)
+            }
+        }
 
-        textView.text = Integer.toBinaryString(textView.text.toString().toInt())
-        var  h = findViewById<Button>(R.id.btHex)
-        var  d = findViewById<Button>(R.id.btDec)
-        var  b = findViewById<Button>(R.id.btBina)
+        var h = findViewById<Button>(R.id.btHex)
+        var d = findViewById<Button>(R.id.btDec)
+        var b = findViewById<Button>(R.id.btBina)
         d.setEnabled(true)
         h.setEnabled(true)
         b.setEnabled(false)
@@ -145,14 +216,6 @@ class MainActivity : AppCompatActivity() {
         isEnableDD(d)
         isEnableDD(b)
 
-        var bt2 = findViewById<Button>(R.id.bt2)
-        var bt3 = findViewById<Button>(R.id.bt3)
-        var bt4 = findViewById<Button>(R.id.bt4)
-        var bt5 = findViewById<Button>(R.id.bt5)
-        var bt6 = findViewById<Button>(R.id.bt6)
-        var bt7 = findViewById<Button>(R.id.bt7)
-        var bt8 = findViewById<Button>(R.id.bt8)
-        var bt9 = findViewById<Button>(R.id.bt9)
         falseButtons(bt2)
         falseButtons(bt3)
         falseButtons(bt4)
@@ -161,7 +224,17 @@ class MainActivity : AppCompatActivity() {
         falseButtons(bt7)
         falseButtons(bt8)
         falseButtons(bt9)
-     }
+
+        falseButtons(bta)
+        falseButtons(btb)
+        falseButtons(btc)
+        falseButtons(btd)
+        falseButtons(bte)
+        falseButtons(btf)
+        binbo = true
+        decbo = false
+        hexbo = false
+    }
 
     fun falseButtons(b: Button){
         if(b.isEnabled==true){
@@ -175,16 +248,19 @@ class MainActivity : AppCompatActivity() {
             b.setTextColor(Color.parseColor("#FF00B0FF"))
         }
     }
-
-
+    fun trueButtonsHex(b: Button){
+        if(b.isEnabled==false){
+            b.isEnabled=true
+            b.setTextColor(Color.parseColor("#090E33"))
+        }
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
-
     /**
-     *
+     * 
      */
     fun numbers(v: View) {
         val num = findViewById<Button>(v.id)
@@ -204,13 +280,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun Decimal(): Double{
+        var retorno : Double = 0.0
+        if (hexbo == true){
+            retorno = hexadecimalADecimal(textView.getText().toString()).toString().toDouble()
+        }
+        if(binbo == true){
+            var c = textView.getText().toString().toLong()
+            retorno= convertBinaryToDecimal(c).toString().toDouble()
+        }
+        if (decbo == true){
+            retorno = textView.getText().toString().toDouble()
+        }
+        return retorno
+    }
+
     fun btSuma(v: View) {
         var bt13 = findViewById<Button>(R.id.button13)
         bt13.isEnabled = true
         if (textView.getText().toString() == "") {
             Toast.makeText(applicationContext, "No has puesto nada", Toast.LENGTH_LONG).show()
         } else {
-            num1 = textView.getText().toString().toDouble()
+            num1 = Decimal()
             operator = "+"
             textView.text = ""
         }
@@ -222,7 +313,7 @@ class MainActivity : AppCompatActivity() {
         if (textView.getText().toString() == "") {
             textView.text = "-"
         } else if (comprueba() == false) {
-            num1 = textView.getText().toString().toDouble()
+            num1 = Decimal()
             operator = "-"
             textView.text = ""
         }
@@ -234,7 +325,7 @@ class MainActivity : AppCompatActivity() {
         if (textView.getText().toString() == "") {
             Toast.makeText(applicationContext, "No has puesto nada", Toast.LENGTH_SHORT).show()
         } else if (comprueba() == false) {
-            num1 = textView.getText().toString().toDouble()
+            num1 = Decimal()
             operator = "x"
             textView.text = ""
         }
@@ -246,7 +337,7 @@ class MainActivity : AppCompatActivity() {
         if (textView.getText().toString() == "") {
             Toast.makeText(applicationContext, "No has puesto nada", Toast.LENGTH_SHORT).show()
         } else if (comprueba() == false) {
-            num1 = textView.getText().toString().toDouble()
+            num1 = Decimal()
             operator = "/"
             textView.text = ""
         }
@@ -270,32 +361,67 @@ class MainActivity : AppCompatActivity() {
 
     fun btEquals(v: View) {
         if (textView.getText().toString() == "") {
-            textView.text = sincero(num1)
+            textView.text = num1.toString()
         } else if (comprueba() == false) {
-            num2 = textView.getText().toString().toDouble()
+            num2 = Decimal()
             if (operator == "+") {
-                textView.text = sincero(sum(num1, num2)).toString()
+                if (binbo == true){
+                    var c = sum(num1, num2)
+                    textView.text = Integer.toBinaryString(c.toInt()).toString()
+                }
+                if(hexbo == true){
+                    var c= sum(num1, num2)
+                    textView.text = Integer.toHexString(c.toInt()).toString()
+                }
+                if(decbo == true){
+                    textView.text = sincero(sum(num1, num2)).toString()
+                }
             }
             if (operator == "-") {
-                textView.text = sincero(rest(num1, num2)).toString()
+                if (binbo == true){
+                    var c = rest(num1, num2)
+                    textView.text = Integer.toBinaryString(c.toInt()).toString()
+                }
+                if(hexbo == true){
+                    var c= rest(num1, num2)
+                    textView.text = Integer.toHexString(c.toInt()).toString()
+                }
+                if(decbo == true){
+                    textView.text = sincero(rest(num1, num2)).toString()
+                }
             }
             if (operator == "x") {
-                textView.text = sincero(multi(num1, num2)).toString()
+                if (binbo == true){
+                    var c = multi(num1, num2)
+                    textView.text = Integer.toBinaryString(c.toInt()).toString()
+                }
+                if(hexbo == true){
+                    var c= multi(num1, num2)
+                    textView.text = Integer.toHexString(c.toInt()).toString()
+                }
+                if(decbo == true){
+                    textView.text = sincero(multi(num1, num2)).toString()
+                }
             }
             if (operator == "/") {
                 if (num2 == 0.0) {
-                    Toast.makeText(
-                        applicationContext,
-                        "No se puede dividir entre 0",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(applicationContext,"No se puede dividir entre 0",Toast.LENGTH_LONG).show()
                 } else {
-                    textView.text = sincero(divi(num1, num2)).toString()
+                    if (binbo == true){
+                        var c = divi(num1, num2)
+                        textView.text = Integer.toBinaryString(c.toInt()).toString()
+                    }
+                    if(hexbo == true){
+                        var c= divi(num1, num2)
+                        textView.text = Integer.toHexString(c.toInt()).toString()
+                    }
+                    if(decbo == true){
+                        textView.text = sincero(divi(num1, num2)).toString()
+                    }
                 }
             }
         }
     }
-
 
     fun sum(a: Double, b: Double): Double = a + b
     fun rest(a: Double, b: Double): Double = a - b
